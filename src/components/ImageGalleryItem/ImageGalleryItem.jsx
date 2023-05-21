@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Modal } from 'components/Modal/Modal';
 import PropTypes from 'prop-types';
-import { Image } from './ImageGalleryItem.styled';
+import { Image, ImgWrap } from './ImageGalleryItem.styled';
 // import { GalleryItem } from './ImageGalleryItem.styled';
 
 export const ImageGalleryItem = ({ image }) => {
@@ -19,14 +19,14 @@ export const ImageGalleryItem = ({ image }) => {
 
   return (
     <div>
-      <div onClick={onSelectedImgClick}>
+      <ImgWrap onClick={onSelectedImgClick}>
         <Image
           loading="lazy"
           src={image.webformatURL}
           alt={image.tags}
           width="320"
         />
-      </div>
+      </ImgWrap>
       {isShowModal && (
         <Modal onModalClose={toggleModal}>
           <img loading="lazy" src={image.largeImageURL} alt={image.tags} />
