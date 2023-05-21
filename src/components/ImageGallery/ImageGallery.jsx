@@ -67,7 +67,7 @@ export const ImageGallery = ({ image }) => {
   }
 
   if (status === Status.REJECTED) {
-    return <ImageErrorView />;
+    return <ImageErrorView message={error.message} />;
   }
 
   if (status === Status.RESOLVED) {
