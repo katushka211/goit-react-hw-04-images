@@ -5,21 +5,15 @@ import { Image, ImgWrap } from './ImageGalleryItem.styled';
 // import { GalleryItem } from './ImageGalleryItem.styled';
 
 export const ImageGalleryItem = ({ image }) => {
-  const [selectedImg, setSelectedImg] = useState(null);
   const [isShowModal, setIsShowModal] = useState(false);
 
   const toggleModal = () => {
     setIsShowModal(!isShowModal);
   };
 
-  const onSelectedImgClick = () => {
-    setSelectedImg(image.largeImageURL);
-    toggleModal();
-  };
-
   return (
     <div>
-      <ImgWrap onClick={onSelectedImgClick}>
+      <ImgWrap onClick={toggleModal}>
         <Image
           loading="lazy"
           src={image.webformatURL}
