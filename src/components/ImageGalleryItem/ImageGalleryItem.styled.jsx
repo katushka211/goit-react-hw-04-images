@@ -11,8 +11,8 @@ export const Image = styled.img`
   height: 260px;
   object-fit: cover;
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: zoom-in;
   :hover {
     transform: scale(1.03);
-    cursor: zoom-in;
   }
 `;
