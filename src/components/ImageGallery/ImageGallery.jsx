@@ -15,11 +15,10 @@ const Status = {
   REJECTED: 'rejected',
 };
 
-export const ImageGallery = ({ image }) => {
+export const ImageGallery = ({ image, page, loadMore }) => {
   const [images, setImages] = useState([]);
   const [status, setStatus] = useState(Status.IDLE);
   const [error, setError] = useState(null);
-  const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
 
   useEffect(() => {
@@ -33,7 +32,6 @@ export const ImageGallery = ({ image }) => {
         } else {
           setStatus(Status.PENDING);
           setImages([]);
-          setPage(1);
         }
 
         const fetchedImages = await fetchImages(image, page);
@@ -53,10 +51,6 @@ export const ImageGallery = ({ image }) => {
     };
     updateData();
   }, [image, page]);
-
-  const loadMoreBtnClick = () => {
-    setPage(prevPage => prevPage + 1);
-  };
 
   if (status === Status.IDLE) {
     return <Notif>Please, enter a search query</Notif>;
@@ -80,7 +74,7 @@ export const ImageGallery = ({ image }) => {
         </Gallery>
         {images.length >= 12 &&
           (page < totalPages || images.length % 12 === 0) && (
-            <Button onClick={loadMoreBtnClick} />
+            <Button onClick={loadMore} />
           )}
         {images.length === 0 && <ImageErrorView />}
       </>

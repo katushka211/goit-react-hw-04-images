@@ -7,15 +7,21 @@ import { Layout } from './Layout/Layout';
 
 export const App = () => {
   const [imageName, setImageName] = useState('');
+  const [page, setPage] = useState(1);
 
   const handleFormSubmit = imageName => {
     setImageName(imageName);
+    setPage(1);
+  };
+
+  const loadMoreBtnClick = () => {
+    setPage(prevPage => prevPage + 1);
   };
 
   return (
     <Layout>
       <Searchbar onSubmit={handleFormSubmit} />
-      <ImageGallery image={imageName} />
+      <ImageGallery image={imageName} page={page} loadMore={loadMoreBtnClick} />
       <ToastContainer autoClose={2500} />
       <GlobalStyle />
     </Layout>
